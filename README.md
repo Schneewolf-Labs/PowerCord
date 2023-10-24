@@ -6,22 +6,22 @@ Install `apcupsd`. Then edit the following files in `/etc/apcupsd/`:
 
 `onbattery`:
 ```
-curl -X POST -H "Content-Type: application/json" -d '{"eventType": "onbattery"}' http://localhost:3000/ups-event
+curl -X POST -H "Content-Type: application/json" -d '{"eventType": "onbattery"}' http://localhost:1100/ups-event
 ```
 
 `offbattery`:
 ```
-curl -X POST -H "Content-Type: application/json" -d '{"eventType": "offbattery"}' http://localhost:3000/ups-event
+curl -X POST -H "Content-Type: application/json" -d '{"eventType": "offbattery"}' http://localhost:1100/ups-event
 ```
 
 `commfailure`:
 ```
-curl -X POST -H "Content-Type: application/json" -d '{"eventType": "commfailure"}' http://localhost:3000/ups-event
+curl -X POST -H "Content-Type: application/json" -d '{"eventType": "commfailure"}' http://localhost:1100/ups-event
 ```
 
 `commok`:
 ```
-curl -X POST -H "Content-Type: application/json" -d '{"eventType": "commok"}' http://localhost:3000/ups-event
+curl -X POST -H "Content-Type: application/json" -d '{"eventType": "commok"}' http://localhost:1100/ups-event
 ```
 
 # Configuration
