@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits } = require('discord.js');
+const { Client, GatewayIntentBits, Events } = require('discord.js');
 
 class Discord {
     constructor(token, channel) {
@@ -8,7 +8,7 @@ class Discord {
         this.client = new Client({ intents: this.intents });
 
         this.client.once(Events.ClientReady, c => {
-            logger.info(`Discord Ready! Logged in as ${c.user.tag}`);
+            console.log(`Discord Ready! Logged in as ${c.user.tag}`);
         });
 
         this.connect();
