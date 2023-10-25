@@ -1,6 +1,6 @@
 {
-    "onbattery": "On Battery",
-    "offbattery": "Off Battery",
-    "commok": "Connected",
-    "commfailure": "Disconnected"
+    "onbattery": "Warning: running on battery power!",
+    "offbattery": "AC power has been restored.",
+    "commok": "Connected to UPS.",
+    "commfailure": "Warning: failed to communicate with UPS!"
 }
