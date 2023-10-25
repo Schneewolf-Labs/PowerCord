@@ -1,0 +1,23 @@
+{
+  "name": "powercord",
+  "version": "1.0.0",
+  "description": "Receive apcupsd events in Discord",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Schneewolf-Labs/PowerCord.git"
+  },
+  "author": "Schneewolf Labs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Schneewolf-Labs/PowerCord/issues"
+  },
+  "homepage": "https://github.com/Schneewolf-Labs/PowerCord#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2"
+  }
+}
