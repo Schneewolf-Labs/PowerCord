@@ -1,0 +1,6 @@
+{
+    "onbattery": "On Battery",
+    "offbattery": "Off Battery",
+    "commok": "Connected",
+    "commfailure": "Disconnected"
+}
