@@ -1,7 +1,7 @@
 # PowerCord
 Receive apcupsd events in Discord
 
-# Prerequisites
+## Prerequisites
 Install `apcupsd`. Then edit the following files in `/etc/apcupsd/`:
 
 `onbattery`:
@@ -24,7 +24,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"eventType": "commfailure"
 curl -X POST -H "Content-Type: application/json" -d '{"eventType": "commok"}' http://localhost:1100/ups-event
 ```
 
-# Configuration
+## Configuration
 Create a `.env` file in the root directory of the project and provide a Discord bot token and channel ID:
 ```
 DISCORD_TOKEN=your_token_here
@@ -32,7 +32,7 @@ DISCORD_CHANNEL_ID=your_channel_id_here
 ```
 Edit `config.json` to change the messages that are sent to Discord.
 
-# Running
+## Running
 ```
 npm install
 npm start
