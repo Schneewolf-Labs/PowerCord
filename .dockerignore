@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+
+# Environment
+.env
+.env.*
+
+# Git
+.git/
+.gitignore
+.github/
+
+# Tests and coverage
+tests/
+coverage/
+*.test.js
+jest.config.js
+
+# Logs
+logs/
+*.log
+
+# Documentation
+README.md
+LICENSE
+*.md
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# CI/CD
+.github/
+
+# Development
+.eslintrc*
+.prettierrc*

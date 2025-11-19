@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  powercord:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: powercord
+    restart: unless-stopped
+
+    # Environment variables from .env file
+    env_file:
+      - .env
+
+    # Override environment for container
+    environment:
+      - NODE_ENV=production
+      - PORT=1100
+
+    # Port mapping
+    ports:
+      - "1100:1100"
+
+    # Volume for persistent logs
+    volumes:
+      - ./logs:/app/logs
+      - ./config.json:/app/config.json:ro
+
+    # Health check
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:1100/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1); }).on('error', () => process.exit(1));"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+    # Network
+    networks:
+      - powercord-network
+
+networks:
+  powercord-network:
+    driver: bridge
