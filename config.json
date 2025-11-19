@@ -1,6 +1,19 @@
 {
-    "onbattery": "Warning: running on battery power!",
-    "offbattery": "AC power has been restored.",
-    "commok": "Connected to UPS.",
-    "commfailure": "Warning: failed to communicate with UPS!"
+    "onbattery": "⚠️ Warning: System is now running on battery power!",
+    "offbattery": "✅ AC power has been restored. System is back on mains.",
+    "commok": "✅ Communication with UPS established successfully.",
+    "commfailure": "❌ Warning: Failed to communicate with UPS!",
+    "changeme": "🔋 Battery replacement required! Please schedule maintenance.",
+    "failing": "🚨 CRITICAL: UPS is failing! Immediate attention required!",
+    "loadlimit": "⚠️ Warning: Load limit exceeded on UPS!",
+    "runlimit": "⚠️ Warning: Runtime limit exceeded!",
+    "timeout": "⚠️ UPS operation timed out.",
+    "startself": "ℹ️ UPS self-test initiated.",
+    "battdetach": "❌ Battery has been detached from UPS!",
+    "battattach": "✅ Battery has been attached to UPS.",
+    "doshutdown": "🚨 CRITICAL: System shutdown initiated due to UPS status!",
+    "mainsback": "✅ Mains power has returned.",
+    "annoyme": "ℹ️ UPS requires attention.",
+    "emergency": "🚨 EMERGENCY: Critical UPS failure detected!",
+    "remotedown": "⚠️ Remote UPS communication is down."
 }
