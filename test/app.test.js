@@ -47,3 +47,14 @@ test('a failed Discord send still acknowledges apcupsd', async () => {
 		assert.equal((await post(url, JSON.stringify({ eventType: 'offbattery' }))).status, 200);
 	});
 });
+
+test('NUT NOTIFYTYPEs map onto the apcupsd messages, labelled with the UPS', async () => {
+	const sent = [];
+	await withServer(async m => { sent.push(m); }, async url => {
+		assert.equal((await post(url, JSON.stringify({ eventType: 'ONBATT', ups: 'rack@nas' }))).status, 200);
+		assert.equal((await post(url, JSON.stringify({ eventType: 'ONLINE' }))).status, 200);
+		// mapped but no message configured for lowbattery here
+		assert.equal((await post(url, JSON.stringify({ eventType: 'LOWBATT' }))).status, 400);
+	});
+	assert.deepEqual(sent, ['[rack@nas] on battery!', 'power back']);
+});

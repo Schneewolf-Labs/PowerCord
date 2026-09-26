@@ -1,6 +1,9 @@
 {
     "onbattery": "Warning: running on battery power!",
     "offbattery": "AC power has been restored.",
+    "lowbattery": "Critical: UPS battery is low!",
+    "changeme": "UPS battery needs replacing.",
+    "doshutdown": "UPS is shutting down the system.",
     "commok": "Connected to UPS.",
     "commfailure": "Warning: failed to communicate with UPS!"
 }
