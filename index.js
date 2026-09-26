@@ -4,6 +4,7 @@ const { createApp, label } = require('./app');
 const { startMonitor } = require('./monitor');
 const nut = require('./protocols/nut');
 const apcupsd = require('./protocols/apcupsd');
+const snmp = require('./protocols/snmp');
 
 // apcupsd's event scripts call this from the same box; anything else on the network
 // should not be able to post fake power alerts.
@@ -26,6 +27,7 @@ const list = value => (value || '').split(',').map(s => s.trim()).filter(Boolean
 const targets = [
 	...list(process.env.NUT_UPS).map(spec => ({ protocol: nut, target: nut.parseTarget(spec) })),
 	...list(process.env.APCUPSD_NIS).map(spec => ({ protocol: apcupsd, target: apcupsd.parseTarget(spec) })),
+	...list(process.env.SNMP_UPS).map(spec => ({ protocol: snmp, target: snmp.parseTarget(spec) })),
 ];
 
 for (const { protocol, target } of targets) {

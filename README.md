@@ -1,9 +1,9 @@
 # PowerCord
-Receive UPS events in Discord from apcupsd or Network UPS Tools (NUT)
+Receive UPS events in Discord from apcupsd, Network UPS Tools (NUT), or a UPS network card over SNMP
 
 There are two ways to get events in, and you can mix them:
 - **Push**: the UPS daemon's event hooks `curl` PowerCord's `/ups-event` endpoint (apcupsd scripts, NUT's `NOTIFYCMD`).
-- **Poll**: PowerCord asks the daemon for the UPS status over its network protocol (NUT's `upsd`, apcupsd's NIS) and reports changes. No hook scripts to edit, and it notices when the daemon itself dies.
+- **Poll**: PowerCord asks for the UPS status over the network (NUT's `upsd`, apcupsd's NIS, or SNMP straight to the UPS's network card) and reports changes. No hook scripts to edit, and it notices when the daemon itself dies.
 
 ## apcupsd event scripts
 Install `apcupsd`. Then edit the following files in `/etc/apcupsd/`:
@@ -56,9 +56,11 @@ Set either or both in `.env` (comma-separate multiple UPSes):
 ```
 NUT_UPS=myups@localhost          # ups@host[:port], same as upsc; port defaults to 3493
 APCUPSD_NIS=localhost            # host[:port]; port defaults to 3551, needs NETSERVER on in apcupsd.conf
+SNMP_UPS=public@ups-nmc          # [community@]host[:port]; SNMPv2c, community defaults to public, port to 161
 POLL_INTERVAL=5                  # seconds
 ```
-Status changes become the same events as the hooks: `onbattery`, `offbattery`, `lowbattery`, `changeme` (replace battery), `doshutdown` (forced shutdown), `commfailure` and `commok`. If the daemon can't be reached, or it has lost the UPS, that's a `commfailure`. Anything abnormal at startup is reported, so a restart mid-outage doesn't hide it. With more than one UPS polled, messages are prefixed with the target name.
+SNMP reads APC's PowerNet-MIB when the card has it and falls back to the standard UPS-MIB (RFC 1628) otherwise. UPS-MIB can't report `changeme`, and neither MIB is used for `doshutdown`. A wrong community gets no reply at all, so it shows up as a `commfailure` with "no SNMP response" in the log.
+Status changes become the same events as the hooks: `onbattery`, `offbattery`, `lowbattery`, `changeme` (replace battery), `doshutdown` (forced shutdown), `commfailure` and `commok`. If the daemon or card can't be reached, or it has lost the UPS, that's a `commfailure`. Anything abnormal at startup is reported, so a restart mid-outage doesn't hide it. With more than one UPS polled, messages are prefixed with the target name.
 
 Don't poll a UPS whose hooks also post to PowerCord, or you'll get every alert twice.
 

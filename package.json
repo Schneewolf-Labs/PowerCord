@@ -1,7 +1,7 @@
 {
   "name": "powercord",
   "version": "1.0.0",
-  "description": "Receive UPS events in Discord from apcupsd or NUT",
+  "description": "Receive UPS events in Discord from apcupsd, NUT, or SNMP",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
